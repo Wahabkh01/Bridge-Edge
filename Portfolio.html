@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" />
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    :root {
+        --primary-color: #9e7236;
+        --bg-dark: #161616;
+        --bg-darker: #1c1c1c;
+        --text-primary: #ffffff;
+        --text-secondary: #a0a0a0;
+        --success-color: #4CAF50;
+        --card-padding: 1.5rem;
+        --border-radius: 12px;
+    }
+
+    body {
+        font-family: 'Montserrat', sans-serif;
+        background-color: var(--bg-dark);
+        color: var(--text-primary);
+        line-height: 1.6;
+    }
+
+    .dashboard-container {
+        display: flex;
+        min-height: 100vh;
+    }
+
+    /* Sidebar Styles */
+    .sidebar {
+        width: 280px;
+        background-color: var(--bg-darker);
+        padding: 2rem 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        transition: all 0.3s ease;
+    }
+
+    .logo {
+        width: 150px;
+        margin-bottom: 1rem;
+    }
+
+    .nav-items {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        cursor: pointer;
+        border-radius: var(--border-radius);
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: var(--text-primary);
+    }
+
+    .nav-item:hover {
+        background-color: rgba(158, 114, 54, 0.1);
+        transform: translateX(5px);
+    }
+
+    .nav-item.active {
+        background-color: var(--primary-color);
+    }
+
+    .nav-item img {
+        width: 24px;
+        height: 24px;
+    }
+
+    /* Main Content */
+    .main-content {
+        flex: 1;
+        padding: 2rem;
+        max-width: 1600px;
+        margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        padding: 1rem 0;
+    }
+
+    .header h1 {
+        font-size: 2rem;
+        font-weight: 600;
+    }
+
+    .user-info {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .notification, .avatar {
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+    .notification:hover, .avatar:hover {
+        transform: scale(1.1);
+    }
+
+    /* Portfolio Cards */
+    .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .portfolio-card {
+        background-color: var(--bg-darker);
+        border-radius: var(--border-radius);
+        padding: var(--card-padding);
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        transition: transform 0.3s ease;
+    }
+
+    .portfolio-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .stock-info {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .stock-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .success-text {
+        color: var(--success-color);
+    }
+
+    /* Chart Section */
+    .chart-section {
+        background-color: var(--bg-darker);
+        border-radius: var(--border-radius);
+        padding: var(--card-padding);
+        margin-bottom: 2rem;
+    }
+
+    .chart-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 2rem;
+    }
+
+    .chart-header h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .dropdown {
+        background-color: var(--bg-dark);
+        color: var(--text-primary);
+        padding: 0.5rem 1rem;
+        border: 1px solid var(--primary-color);
+        border-radius: var(--border-radius);
+        cursor: pointer;
+    }
+
+    /* Activity Log */
+    .activity-log {
+        background-color: var(--bg-darker);
+        border-radius: var(--border-radius);
+        padding: var(--card-padding);
+    }
+
+    .activity-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .activity-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .activity-item {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1.5fr auto;
+        padding: 1rem;
+        background-color: var(--bg-dark);
+        border-radius: var(--border-radius);
+        margin-bottom: 0.75rem;
+        transition: transform 0.2s ease;
+    }
+
+    .activity-item:hover {
+        transform: translateX(5px);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+        .sidebar {
+            width: 240px;
+        }
+
+        .main-content {
+            padding: 1.5rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .dashboard-container {
+            flex-direction: column;
+        }
+
+        .sidebar {
+            width: 100%;
+            height: auto;
+            padding: 1rem;
+        }
+
+        .nav-items {
+            flex-direction: row;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .nav-item {
+            flex-shrink: 0;
+            padding: 0.75rem;
+        }
+
+        .main-content {
+            padding: 1rem;
+        }
+
+        .activity-item {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .activity-item div:nth-child(3) {
+            display: none;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .header {
+            flex-direction: column-reverse;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .portfolio-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .activity-item {
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+        }
+
+        .chart-header {
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .activity-header {
+            flex-direction: column;
+            gap: 1rem;
+        }
+    }
+</style>
+
+<body>
+    <title>Portfolio</title>
+    <div class="dashboard-container">
+        <!-- Rest of the HTML remains exactly the same -->
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <img class="logo" alt="Bridge Edge Logo" src="/assets/Bridge_Edge_logo-removebg-preview (1) 1.png">
+            <div class="nav-items">
+                <a href="Dashboard.html" class="nav-item ">
+                    <img src="/assets/Home.png" alt="Home">
+                    <span>Dashboard</span>
+                </a>
+                <a href="Portfolio.html" class="nav-item active">
+                    <img src="/assets/Credit card.png" alt="Portfolio">
+                    <span>Portfolio</span>
+                </a>
+                <a href="Markets.html" class="nav-item">
+                    <img src="/assets/Trending up.png" alt="Market">
+                    <span>Market</span>
+                </a>
+                <a href="News.html" class="nav-item">
+                    <img src="/assets/Book open.png" alt="News">
+                    <span>News</span>
+                </a>
+                <a href="Profile.html" class="nav-item">
+                    <img src="/assets/Users.png" alt="User">
+                    <span>User</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="header">
+                <h1>Hello James!</h1>
+                <div class="user-info">
+                    <img class="notification" src="/assets/Bell.png" alt="Notifications">
+                    <img class="avatar" src="/assets/Avatar.png" alt="User Avatar">
+                </div>
+            </div>
+
+            <!-- Portfolio Cards -->
+            <div class="portfolio-grid">
+                <!-- Amazon Card -->
+                <div class="portfolio-card">
+                    <div class="stock-info">
+                        <img class="stock-icon" src="/assets/amazon.png" alt="Amazon">
+                        <div>
+                            <div>AMZN</div>
+                            <div>Amazon Inc</div>
+                        </div>
+                    </div>
+                    <img src="/assets/Vector 2.png" width="100px">
+                    <div>
+                        <div>Total Share: <span class="success-text">+231.03</span></div>
+                        <div>Total Return: $231.03</div>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="stock-info">
+                        <img class="stock-icon" src="/assets/Tesla.png" alt="Amazon">
+                        <div>
+                            <div>Tesla</div>
+                            <div>Tesla Inc</div>
+                        </div>
+                    </div>
+                    <img src="/assets/Vector 2.png" width="100px">
+                    <div>
+                        <div>Total Share: <span class="success-text">+231.03</span></div>
+                        <div>Total Return: $231.03</div>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="stock-info">
+                        <img class="stock-icon" src="/assets/Logo.png" alt="Amazon">
+                        <div>
+                            <div>APPL</div>
+                            <div>Apple Inc</div>
+                        </div>
+                    </div>
+                    <img src="/assets/Vector 3.png" width="100px">
+                    <div>
+                        <div>Total Share: <span class="success-text">+231.03</span></div>
+                        <div>Total Return: $231.03</div>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="stock-info">
+                        <img class="stock-icon" src="/assets/amazon.png" alt="Amazon">
+                        <div>
+                            <div>AMZN</div>
+                            <div>Amazon Inc</div>
+                        </div>
+                    </div>
+                    <img src="/assets/Vector 2.png" width="100px">
+                    <div>
+                        <div>Total Share: <span class="success-text">+231.03</span></div>
+                        <div>Total Return: $231.03</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chart Section -->
+            <section class="chart-section">
+                <div class="chart-header">
+                    <div>
+                        <h2>Portfolio Value</h2>
+                        <div>$103,000.00</div>
+                        <div class="success-text">+0.01% ($81,300.00)</div>
+                    </div>
+                    <select class="dropdown">
+                        <option>All</option>
+                    </select>
+                </div>
+                <img src="assets/Frame 440.png" class="image">
+            </section>
+
+            <!-- Activity Log -->
+            <section class="activity-log">
+                <div class="activity-header">
+                    <h2>Activity Log</h2>
+                    <div>
+                        <select class="dropdown">
+                            <option>2025</option>
+                        </select>
+                        <select class="dropdown">
+                            <option>January</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div>AMZN Purchase</div>
+                        <div>$300.00</div>
+                        <div>Jun-26-24 (9:00 am)</div>
+                        <div class="success-text">Success</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
