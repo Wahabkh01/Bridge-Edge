@@ -1,98 +1,116 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, width=device-width">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" />
-</head>
-<style>
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    background-color: #161616;
-    font-family: Montserrat;
-    color: #fff;
-}
-
-.sign-up {
-    display: flex;
-    width: 100%;
-    max-width: 1440px;
-    position: relative;
-    min-height: 100vh;
-}
-
-.content-container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
-    max-width: 611px;
-    margin: 0 auto;
-}
-
-.logo {
-    width: 210.4px;
-    height: 135.6px;
-    margin-bottom: 2rem;
-}
-
-.sign-up-header {
-    text-align: center;
-    margin-bottom: 2rem;
-    width: 100%;
-}
-
-.sign-up-to {
-    font-size: 32px;
-    font-weight: 500;
-    margin-bottom: 1rem;
-}
-
-.fill-in-your {
-    font-size: 20px;
-    color: #b3b3b3;
-}
-
-.input-fields {
-    width: 100%;
-    max-width: 611px;
-}
-
-.input-row {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.input-field {
-    flex: 1;
-    margin-bottom: 1.5rem;
-}
-
-.first-name {
-    margin-bottom: 0.5rem;
-    color: #f3f3f3;
-    font-family: Inter;
-}
-
-.input {
-    width: 100%;
-    border-radius: 8px;
-    background-color: #1c1c1c;
-    border: 1px solid #d9d9d9;
-    padding: 12px 16px;
-    color: white;
-    font-size: 16px;
-    box-sizing: border-box;
-}
-
-.button {
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Montserrat, sans-serif;
+            background-color: #161616;
+            color: #fff;
+        }
+        .container {
+            max-width: 1366px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo {
+            max-width: 210px;
+            margin: 0 auto 20px;
+            display: block;
+        }
+        .signup-title {
+            font-size: 32px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        .signup-subtitle {
+            color: #b3b3b3;
+            font-size: 20px;
+        }
+        .plans-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .plan {
+            background-color: #1c1c1c;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 442px;
+            padding: 24px;
+            text-align: center;
+            position: relative;
+        }
+        .plan-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .plan-price {
+            font-size: 52px;
+            font-weight: 300;
+        }
+        .plan-tier {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .plan-tier img {
+            width: 43px;
+            height: 43px;
+            margin-right: 10px;
+        }
+        .plan-details {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        .plan-details p {
+            margin-bottom: 10px;
+        }
+        .plan-details .highlight {
+            color: #119c59;
+        }
+        .subscribe-btn {
+            background-color: #9e7236;
+            color: #f3f3f3;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            width: 100%;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .divider {
+            height: 2px;
+            background-color: rgba(255,255,255,0.1);
+            margin: 20px 0;
+        }
+        .global-signup-btn {
+            display: block;
+            width: 100%;
+            max-width: 442px;
+            margin: 30px auto 0;
+            background-color: #9e7236;
+            color: #f3f3f3;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .button {
     width: 100%;
     border-radius: 8px;
     background-color: #9e7236;
@@ -104,186 +122,115 @@ body {
     margin-top: 1rem;
 }
 
-.login-text {
-    margin-top: 2rem;
-    color: #b3b3b3;
-    font-size: 20px;
-    text-align: center;
-}
+        @media (min-width: 768px) {
+            .plans-container {
+                gap: 30px;
+            }
+            .plan {
+                width: calc(50% - 30px);
+            }
+        }
 
-.login {
-    color: #9e7236;
-    text-decoration: underline;
-}
-
-.image-container {
-    flex: 1;
-    background-color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    height: 100%; /* Ensure container takes full height */
-}
-
-.image-1-icon {
-    width: 100%;
-    height: 100%; /* Make image take full height of container */
-    object-fit: cover; /* Changed to cover to maintain aspect ratio */
-    max-height: 990px; /* Limit maximum height to approximately match form height */
-}
-
-.input-referral-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.5rem;
-}
-
-.optional {
-    color: #9e7236;
-}
-
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-    .sign-up {
-        flex-direction: column;
-    }
-
-    .content-container {
-        padding: 1rem;
-    }
-
-    .image-container {
-        display: none; /* Hide image on mobile */
-    }
-
-    .logo {
-        width: 150px;
-        height: auto;
-        margin-bottom: 1.5rem;
-    }
-
-    .sign-up-to {
-        font-size: 24px;
-    }
-
-    .fill-in-your {
-        font-size: 16px;
-    }
-
-    .input-row {
-        flex-direction: column;
-        gap: 0;
-    }
-
-    .input-field {
-        margin-bottom: 1rem;
-    }
-
-    .button {
-        font-size: 18px;
-        padding: 10px;
-    }
-
-    .login-text {
-        font-size: 16px;
-    }
-}
-
-/* Small phones */
-@media screen and (max-width: 375px) {
-    .content-container {
-        padding: 0.8rem;
-    }
-
-    .logo {
-        width: 120px;
-    }
-
-    .sign-up-to {
-        font-size: 20px;
-    }
-
-    .fill-in-your {
-        font-size: 14px;
-    }
-
-    .input {
-        padding: 10px 12px;
-        font-size: 14px;
-    }
-
-    .button {
-        font-size: 16px;
-        padding: 8px;
-    }
-
-    .first-name {
-        font-size: 14px;
-    }
-
-    .optional {
-        font-size: 14px;
-    }
-}
-</style>
+        @media (min-width: 1024px) {
+            .plan {
+                width: calc(33.33% - 30px);
+            }
+        }
+    </style>
+</head>
 <body>
-    <div class="sign-up">
-        <div class="content-container">
-            <img class="logo" alt="" src="assets/Bridge_Edge_logo-removebg-preview (1) 1.png">
-            
-            <div class="sign-up-header">
-                <div class="sign-up-to">Sign Up to Get Started</div>
-                <div class="fill-in-your">Fill in your details to get registered</div>
-            </div>
-
-            <div class="input-fields">
-                <div class="input-row">
-                    <div class="input-field">
-                        <div class="first-name">First Name</div>
-                        <input type="text" class="input" placeholder="Enter your first name">
-                    </div>
-                    <div class="input-field">
-                        <div class="first-name">Last Name</div>
-                        <input type="text" class="input" placeholder="Enter your last name">
-                    </div>
-                </div>
-
-                <div class="input-field">
-                    <div class="first-name">Email address</div>
-                    <input type="email" class="input" placeholder="Enter your Email address">
-                </div>
-
-                <div class="input-field">
-                    <div class="first-name">Password</div>
-                    <input type="password" class="input" placeholder="Enter your Password">
-                </div>
-
-                <div class="input-field">
-                    <div class="first-name">Confirm Password</div>
-                    <input type="password" class="input" placeholder="Enter your Password">
-                </div>
-
-                <div class="input-field">
-                    <div class="input-referral-wrapper">
-                        <div class="first-name">Input Referral Code</div>
-                        <div class="optional">Optional</div>
-                    </div>
-                    <input type="text" class="input" placeholder="Enter your Referral Code">
-                </div>
-
-                <button class="button" onclick="window.location.href='login.html'">Sign Up</button>
-            </div>
-
-            <div class="login-text">
-                Already a member? <a href="login.html" class="login">Login</a>
-            </div>
+    <div class="container">
+        <div class="header">
+            <img src="/assets/Bridge_Edge_logo-removebg-preview (1) 1.png" alt="Bridge Edge Logo" class="logo">
+            <div class="signup-title">Sign Up to Get Started</div>
+            <div class="signup-subtitle">Choose your membership plan</div>
         </div>
-
-        <div class="image-container">
-            <img class="image-1-icon" alt="" src="assets/image 1.png">
+        
+        <div class="plans-container">
+            <!-- Existing plan cards (5 identical Bronze plan cards) -->
+            <div class="plan">
+                <div class="plan-header">
+                    <div class="plan-tier">
+                        <img src="/assets/goldMedal.png" alt="Medal">
+                        <span>Bronze</span>
+                    </div>
+                    <div class="plan-price">$10</div>
+                </div>
+                <div class="divider"></div>
+                <div class="plan-details">
+                    <p>• Membership points: <span class="highlight">50</span></p>
+                    <p>• Profit Share %: <span class="highlight">8%</span></p>
+                    <p>• Full platform access</p>
+                </div>
+                <button class="subscribe-btn">Subscribe</button>
+            </div>
+            <div class="plan">
+                <div class="plan-header">
+                    <div class="plan-tier">
+                        <img src="/assets/goldMedal.png" alt="Medal">
+                        <span>Bronze</span>
+                    </div>
+                    <div class="plan-price">$10</div>
+                </div>
+                <div class="divider"></div>
+                <div class="plan-details">
+                    <p>• Membership points: <span class="highlight">50</span></p>
+                    <p>• Profit Share %: <span class="highlight">8%</span></p>
+                    <p>• Full platform access</p>
+                </div>
+                <button class="subscribe-btn">Subscribe</button>
+            </div>
+            <div class="plan">
+                <div class="plan-header">
+                    <div class="plan-tier">
+                        <img src="/assets/goldMedal.png" alt="Medal">
+                        <span>Bronze</span>
+                    </div>
+                    <div class="plan-price">$10</div>
+                </div>
+                <div class="divider"></div>
+                <div class="plan-details">
+                    <p>• Membership points: <span class="highlight">50</span></p>
+                    <p>• Profit Share %: <span class="highlight">8%</span></p>
+                    <p>• Full platform access</p>
+                </div>
+                <button class="subscribe-btn">Subscribe</button>
+            </div>
+            <div class="plan">
+                <div class="plan-header">
+                    <div class="plan-tier">
+                        <img src="/assets/goldMedal.png" alt="Medal">
+                        <span>Bronze</span>
+                    </div>
+                    <div class="plan-price">$10</div>
+                </div>
+                <div class="divider"></div>
+                <div class="plan-details">
+                    <p>• Membership points: <span class="highlight">50</span></p>
+                    <p>• Profit Share %: <span class="highlight">8%</span></p>
+                    <p>• Full platform access</p>
+                </div>
+                <button class="subscribe-btn">Subscribe</button>
+            </div>
+            <div class="plan">
+                <div class="plan-header">
+                    <div class="plan-tier">
+                        <img src="/assets/goldMedal.png" alt="Medal">
+                        <span>Bronze</span>
+                    </div>
+                    <div class="plan-price">$10</div>
+                </div>
+                <div class="divider"></div>
+                <div class="plan-details">
+                    <p>• Membership points: <span class="highlight">50</span></p>
+                    <p>• Profit Share %: <span class="highlight">8%</span></p>
+                    <p>• Full platform access</p>
+                </div>
+                <button class="subscribe-btn">Subscribe</button>
+            </div>
+            <!-- Repeat the above plan 4 more times -->
         </div>
+        <button class="global-signup-btn button" onclick="window.location.href='signup.html'">Sign Up Now</button>
     </div>
 </body>
 </html>
